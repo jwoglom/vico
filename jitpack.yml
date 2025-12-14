@@ -5,4 +5,4 @@ gradle:
   wrapper: true
 
 install:
-  - ./gradlew :vico:compose:publishToMavenLocal :vico:compose-m3:publishToMavenLocal :vico:core:publishToMavenLocal -x :kotlinNpmInstall -x compileKotlinJs -x compileKotlinWasmJs -x test
+  - ./gradlew :vico:compose:publishToMavenLocal :vico:compose-m3:publishToMavenLocal :vico:core:publishToMavenLocal -x :kotlinNpmInstall -x compileKotlinJs -x compileKotlinWasmJs -x test -x signMavenPublication
