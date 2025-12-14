@@ -3,6 +3,24 @@ jdk:
 
 gradle:
   wrapper: true
+before_install:
+  - |
+    cat <<EOF >> build.gradle.kts
+    
+    // INJECTED BY JITPACK.YML TO DISABLE SIGNING
+    subprojects {
+        plugins.withId("maven-publish") {
+            configure<org.gradle.api.publish.PublishingExtension> {
+                publications.withType<org.gradle.api.publish.maven.MavenPublication> {
+                    artifacts.removeIf { it.extension == "asc" }
+                }
+            }
+        }
+        tasks.withType<org.gradle.plugins.signing.Sign> {
+            enabled = false
+        }
+    }
+    EOF
 
 install:
-  - ./gradlew :vico:compose:publishToMavenLocal :vico:compose-m3:publishToMavenLocal :vico:core:publishToMavenLocal -x :kotlinNpmInstall -x compileKotlinJs -x compileKotlinWasmJs -x test -x signMavenPublication
+  - ./gradlew :vico:compose:publishToMavenLocal :vico:compose-m3:publishToMavenLocal :vico:core:publishToMavenLocal -x :kotlinNpmInstall -x compileKotlinJs -x compileKotlinWasmJs -x test
