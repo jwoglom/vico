@@ -7,5 +7,8 @@ gradle:
 before_install:
  - echo "" >> build.gradle.kts
  - echo "rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootPlugin> {" >> build.gradle.kts
- - echo '     rootProject.the<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension>().nodeVersion = "18.19.0" ' >> build.gradle.kts
+ - echo "    rootProject.the<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension>().apply {" >> build.gradle.kts
+ - echo "        @Suppress(\"DEPRECATION\")" >> build.gradle.kts
+ - echo "        nodeVersion = \"18.19.0\"" >> build.gradle.kts
+ - echo "    }" >> build.gradle.kts
  - echo "}" >> build.gradle.kts
