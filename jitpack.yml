@@ -4,11 +4,5 @@ jdk:
 gradle:
   wrapper: true
 
-
-before_install:
- - echo "" >> build.gradle.kts
- - echo "rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootPlugin> {" >> build.gradle.kts
- - echo "    val extension = rootProject.extensions.getByType(org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension::class.java)" >> build.gradle.kts
- - echo "    val method = extension.javaClass.getMethod(\"setNodeVersion\", String::class.java)" >> build.gradle.kts
- - echo "    method.invoke(extension, \"18.19.0\")" >> build.gradle.kts
- - echo "}" >> build.gradle.kts
+install:
+  - ./gradlew :vico:compose:publishToMavenLocal :vico:compose-m3:publishToMavenLocal :vico:core:publishToMavenLocal -x :kotlinNpmInstall -x compileKotlinJs -x compileKotlinWasmJs -x test
