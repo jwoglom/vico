@@ -5,4 +5,7 @@ gradle:
   wrapper: true
 
 before_install:
- - echo "rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootPlugin> {     rootProject.the<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension>().nodeVersion = "18.19.0" }" >> build.gradle.kts
+ - echo "" >> build.gradle.kts
+ - echo "rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootPlugin> {" >> build.gradle.kts
+ - echo '     rootProject.the<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension>().nodeVersion = "18.19.0" ' >> build.gradle.kts
+ - echo "}" >> build.gradle.kts
